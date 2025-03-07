@@ -97,8 +97,36 @@ def edit_transaction(sampledata):
     print("Updated Transactions:")
     print(df.reset_index().to_string(index=False))
 
+
+# Delete a Transaction
+
+def delete_transaction(sampledata):
+    # Load the file
+    df = pd.read_csv("sampledata.csv")
+
+    # Show existing transactions with index
+    print("Existing Transactions:")
+    print(df.reset_index().to_string(index=False))
+
+    # Ask the user for the index of the transaction to delete
+    index_transaction = int(input("Enter the index of the transaction to delete: "))
+
+    # If the user enters an index that doesn't exist
+    if index_transaction < 0 or index_transaction >= len(df):
+        print("Invalid transaction")
+        return
+
+    # Delete the transaction
+    df = df.drop(index_transaction).reset_index(drop = True)
+
+    # Show the new DataFrame with the new information
+    print("Updated Transactions:")
+    print(df.reset_index().to_string(index=False))
+
+
 # To ensure that the correct file is uploaded and the processing works without errors
 sampledata = "sampledata.csv"
 filter_transactions_by_date(sampledata)
 add_transaction(sampledata)
 edit_transaction(sampledata)
+delete_transaction(sampledata)
