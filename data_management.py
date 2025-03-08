@@ -2,8 +2,15 @@
 Manages loading, adding, editing, and deleting transactions.
 """
 from operator import index
+from random import choice
 
 import pandas as pd
+
+# View all Transactions
+def view_all_transactions(sampledata):
+    # Load the file
+    df = pd.read_csv("sampledata.csv")
+    print(df)
 
 # View Transactions by Date Range
 def filter_transactions_by_date(sampledata):
@@ -124,8 +131,57 @@ def delete_transaction(sampledata):
     print(df.reset_index().to_string(index=False))
 
 
+# Initial menu display
+def main_menu():
+    while True:
+        print("--- Personal Finance Tracker ---")
+        print("0. Import a CSV File")
+        print("1. View All Transactions")
+        print("2. View Transactions by Date Range")
+        print("3. Add a Transaction")
+        print("4. Edit a Transaction")
+        print("5. Delete a Transaction")
+        print("6. Analyze Spending by Category")
+        print("7. Calculate Average Monthly Spending")
+        print("8. Show Top Spending Category")
+        print("9. Visualize Monthly Spending Trend")
+        print("10. Save Transactions to CSV")
+        print("11. Exit")
+
+        try:
+            option = int(input("Choose an option (0-11): "))
+            if option == 0:
+                import_csv_file()
+            elif option == 1:
+                view_all_transactions()
+            elif option == 2:
+                filter_transactions_by_date()
+            elif option == 3:
+                add_transaction()
+            elif option == 4:
+                edit_transaction()
+            elif option == 5:
+                delete_transaction()
+            elif option == 6:
+                spending_category()
+            elif option == 7:
+                average_spending_month()
+            elif option == 8:
+                top_spending_category()
+            elif option == 9:
+
+            elif option == 10:
+                export_csv_file()
+            elif option == 11:
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid option. Please choose a number between 0 and 11")
+
 # To ensure that the correct file is uploaded and the processing works without errors
 sampledata = "sampledata.csv"
+main_menu()
+view_all_transactions(sampledata)
 filter_transactions_by_date(sampledata)
 add_transaction(sampledata)
 edit_transaction(sampledata)
