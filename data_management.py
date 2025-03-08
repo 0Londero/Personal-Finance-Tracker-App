@@ -123,3 +123,9 @@ def delete_transaction(sampledata):
     # Show the new DataFrame with the new information
     print("Updated Transactions:")
     print(df.reset_index().to_string(index=False))
+
+    # View all Transactions
+def view_all_transactions(sampledata):
+    # Load the file
+    df = pd.read_csv("sampledata.csv")
+    print(df)
